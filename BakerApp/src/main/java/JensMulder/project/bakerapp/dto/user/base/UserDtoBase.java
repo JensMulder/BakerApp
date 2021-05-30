@@ -12,8 +12,6 @@ public class UserDtoBase {
     private String username;
     @Email
     private String email;
-    private boolean active;
-    private String roles;
     @Length(min = 3, max = 40)
     private String firstName;
     @Length(min = 3, max = 40)
@@ -31,14 +29,11 @@ public class UserDtoBase {
     @Length(min = 3, max = 30)
     private String province;
 
-    private Set<Order> orders;
-
     public UserDtoBase() {}
 
     public UserDtoBase(
             String username,
             String email,
-            String roles,
             String firstName,
             String lastName,
             String phoneNumber,
@@ -50,7 +45,6 @@ public class UserDtoBase {
     ) {
         this.username = username;
         this.email = email;
-        this.roles = roles;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -77,18 +71,6 @@ public class UserDtoBase {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public void setRoles(String roles) {
-        this.roles = roles;
     }
 
     public String getFirstName() {

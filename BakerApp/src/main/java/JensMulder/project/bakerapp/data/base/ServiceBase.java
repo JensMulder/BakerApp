@@ -4,7 +4,7 @@ import JensMulder.project.bakerapp.core.constants.ErrorConstants;
 import JensMulder.project.bakerapp.core.contracts.IDataService;
 import JensMulder.project.bakerapp.core.contracts.IRepository;
 import JensMulder.project.bakerapp.core.contracts.IDbModel;
-import JensMulder.project.bakerapp.util.ApiException;
+import JensMulder.project.bakerapp.util.exceptions.ApiException;
 import JensMulder.project.bakerapp.util.CrudResult;
 import org.slf4j.Logger;
 import org.springframework.data.domain.Page;

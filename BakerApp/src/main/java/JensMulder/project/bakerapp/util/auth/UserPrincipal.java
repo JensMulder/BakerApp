@@ -12,11 +12,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class UserPrincipal implements UserDetails {
-    private static final long serialVersionUID = 1L;
     private final Long id;
     private final String username;
     private final String email;
 
+    // Je wilt niet dat je wachtwoord in de payload zit!
     @JsonIgnore
     private final String password;
 

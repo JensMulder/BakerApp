@@ -1,6 +1,7 @@
 package JensMulder.project.bakerapp.util;
 
 import JensMulder.project.bakerapp.core.constants.ErrorConstants;
+import JensMulder.project.bakerapp.util.exceptions.ApiException;
 import org.springframework.http.HttpStatus;
 
 import java.util.List;
@@ -22,7 +23,24 @@ public class ApiError {
 
     public ApiError(ApiException exc) {
         this.status = exc.getStatus().value();
-        this.message = exc.getMessage();
+
+        var message = "";
+
+        switch (this.status) {
+            case 403:
+                message = ErrorConstants.ACCESS_DENIED_ERROR;
+                break;
+            case 401:
+                message = ErrorConstants.UNAUTHENTICATED_ERROR_MSG;
+            case 400:
+                message = ErrorConstants.VALIDATION_ERROR;
+                break;
+            default:
+                message = ErrorConstants.INTERNAL_SERVER_ERROR;
+                break;
+        }
+
+        this.message = message;
         this.description = exc.getReason();
         this.validationErrors = exc.getValidationErrors();
     }

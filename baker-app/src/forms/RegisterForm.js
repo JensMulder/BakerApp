@@ -1,10 +1,8 @@
 import {useForm} from "react-hook-form";
-import React, {useEffect,} from "react";
+import React from "react";
 import {User} from "../models/User";
 import {Button} from "../Components/button/Button";
 import "../Styles/Component_styles/Forms.css"
-import axios from "axios";
-import {useAuthState} from "../Components/context/AuthContext"
 import authClient from "../clients/authClient";
 
 
@@ -31,14 +29,18 @@ export const RegisterForm = () => {
 
         console.log(user);
 
-        const response = await authClient.register(data.firstName, data.lastName, data.email,data.username, data.password, data.streetName, data.houseNumber, data.houseNumberAdd, data.postalCode, data.province);
-
-
-
-
-
-
-
+        const response = await authClient.register(
+            data.firstName, 
+            data.lastName, 
+            data.email,
+            data.username, 
+            data.password, 
+            data.streetName, 
+            data.houseNumber, 
+            data.houseNumberAdd, 
+            data.postalCode, 
+            data.province
+        );
     }
 
     return (
@@ -53,7 +55,7 @@ export const RegisterForm = () => {
                 </div>
                 <div className="section"><span>2</span>Email, Username & Password</div>
                 <div className="inner-wrap">
-                <label>Email<input required={true} type='email' {...userRegister("email")} type="email"/></label>
+                <label>Email<input required={true} {...userRegister("email")} type="email"/></label>
                 <label>Gebruikersnaam<input required={true} type='text' {...userRegister("username")}/></label>
                     <label>TelefoonNummer<input required={true} type='text' {...userRegister("phoneNumber")}/></label>
                 <label>Wachtwoord<input {...userRegister("password")} required={true} type="password"/></label>

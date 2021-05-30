@@ -2,10 +2,9 @@ package JensMulder.project.bakerapp.data;
 
 import JensMulder.project.bakerapp.core.constants.ErrorConstants;
 import JensMulder.project.bakerapp.core.contracts.IUserRepository;
-import JensMulder.project.bakerapp.util.ApiException;
+import JensMulder.project.bakerapp.util.exceptions.ApiException;
 import JensMulder.project.bakerapp.util.auth.UserPrincipal;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +19,7 @@ public class BakerUserDetailsService implements UserDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String username)  {
+    public UserPrincipal loadUserByUsername(String username)  {
         var user = userRepo.findByUsername(username)
                 .orElseThrow(() -> new ApiException(HttpStatus.BAD_REQUEST, String.format(ErrorConstants.NOT_FOUND_ERROR_MSG, "User", "username", username)));
         return UserPrincipal.build(user);

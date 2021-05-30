@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route, } from 'react-router-dom';
-import PrivateRoute from "./AdminPrivateRoute";
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import Login from "../pages/Login";
 import AboutPage from "../pages/AboutPage";
@@ -10,7 +9,6 @@ import Register from "../pages/Register";
 import CreateOrder from "../Components/Createorder/CreateOrder";
 import Account from "../pages/Account";
 import Dashboard from '../pages/Dashboard'
-import {OrderPage} from "../forms/OrderForm";
 import {RegisterForm} from "../forms/RegisterForm";
 import UpdateOrder from "../Components/edit/EditOrder";
 import UpdateUser from "../Components/edit/EditUser";

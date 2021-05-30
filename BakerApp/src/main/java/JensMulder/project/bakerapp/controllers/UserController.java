@@ -5,11 +5,12 @@ import JensMulder.project.bakerapp.core.constants.ErrorConstants;
 import JensMulder.project.bakerapp.core.models.User;
 import JensMulder.project.bakerapp.data.UserService;
 import JensMulder.project.bakerapp.dto.user.RegisterRequest;
-import JensMulder.project.bakerapp.dto.user.UpdateUserDto;
+import JensMulder.project.bakerapp.dto.user.UpdateUserRequest;
 import JensMulder.project.bakerapp.dto.user.UserDto;
-import JensMulder.project.bakerapp.util.ApiException;
+import JensMulder.project.bakerapp.util.exceptions.ApiException;
 import JensMulder.project.bakerapp.util.ApiResponse;
 import JensMulder.project.bakerapp.util.auth.AuthenticationFacade;
+import JensMulder.project.bakerapp.util.exceptions.UnauthorizedException;
 import JensMulder.project.bakerapp.util.factories.ApiResponseFactory;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -20,11 +21,12 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
+
 @RestController
 @RequestMapping("/users")
 public class UserController extends ControllerBase<User> {
     private final UserService service;
-    private final AuthenticationFacade authentication;
 
     public UserController(
             UserService service,
@@ -33,9 +35,8 @@ public class UserController extends ControllerBase<User> {
             ModelMapper modelMapper,
             AuthenticationFacade authentication
     ) {
-        super(service, logger, responseFactory, modelMapper);
+        super(service, logger, responseFactory, modelMapper, authentication);
 
-        this.authentication = authentication;
         this.service = service;
     }
 
@@ -52,8 +53,10 @@ public class UserController extends ControllerBase<User> {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse> update(@PathVariable Long id, @RequestBody UpdateUserDto item) {
-        return super.<UserDto, UpdateUserDto>update(id, item);
+    public ResponseEntity<ApiResponse> update(@PathVariable Long id, @RequestBody UpdateUserRequest item) {
+        userAuthorizeCheck(id);
+
+        return super.<UserDto, UpdateUserRequest>update(id, item);
     }
 
     @PostMapping("/")
@@ -63,17 +66,9 @@ public class UserController extends ControllerBase<User> {
 
     @Override
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(Long id) {
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        userAuthorizeCheck(id);
+
         return super.delete(id);
-    }
-
-    @GetMapping("user-info")
-    public ResponseEntity<ApiResponse> getUserInfo() {
-        if (authentication.getAuthentication() instanceof AnonymousAuthenticationToken)
-            throw new ApiException(HttpStatus.UNAUTHORIZED, ErrorConstants.UNAUTHENTICATED_ERROR_MSG);
-
-        var userName = ((UserDetails) authentication.getAuthentication().getPrincipal()).getUsername();
-
-        return responseFactory.<UserDto>createResponse(modelMapper, service.getByUsername(userName));
     }
 }

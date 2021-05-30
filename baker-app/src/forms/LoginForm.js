@@ -1,6 +1,5 @@
 import {useForm} from "react-hook-form";
-import React, {useContext, useEffect,} from "react";
-import {User} from "../models/User";
+import React, { useEffect,} from "react";
 import {Button} from "../Components/button/Button";
 import {useHistory} from "react-router-dom";
 import authClient from '../clients/authClient'
@@ -29,25 +28,16 @@ export const LoginForm = () => {
         }
     }, [isAuthenticated])
 
-
-
-
-
-
-
     const onRegisterSubmit = async (data) => {
-        const user = new User(
-            undefined,
-            data.username,
-            data.password,
-
-        );
-
-        console.log(user);
+        console.log(data);
 
         const response = await authClient.login(data.username, data.password);
 
-        login(data);
+        console.log(process.env.REACT_APP_API_BASE_URL)
+
+        console.log(response);
+
+        login(response.data.result);
     }
 
 
@@ -56,29 +46,26 @@ export const LoginForm = () => {
         <div className="register-page">
             <div className="register-form-container">
                 <h1>Login!<span>Meld je hier aan!</span></h1>
-
             <div className="login-form-container">
                 <form onSubmit={handleUserLoginSubmit(onRegisterSubmit)}>
                     <div className="field">
-                        <label><input placeholder="Gebruikersnaam" required={true} {...userLogin("firstName")}/></label>
-
+                        <label>
+                            <input placeholder="Gebruikersnaam" required={true} {...userLogin("username")}/>
+                        </label>
                     </div>
                     <div className="field">
-                        <label><input placeholder="Wachtwoord" type='password' required={true} {...userLogin("lastName")} /></label>
-
+                        <label>
+                            <input placeholder="Wachtwoord" type='password' required={true} {...userLogin("password")} />
+                        </label>
                     </div>
-
-                    <div class="field">
+                    <div className="field">
                         <Button color="primary" type="submit">Login</Button>
                         </div>
-                    <div class="signup-link">
+                    <div className="signup-link">
                         Heeft U nog geen account? Klik dan <Link to="/Register" className="link">HIER</Link> om U aan te
                             melden.
                     </div>
                 </form>
-
-
-
             </div>
         </div>
             <h4>Happines is Knowing there is a CAKE in the oven, or smacking it into somebodies face...........</h4>

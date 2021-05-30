@@ -6,8 +6,9 @@ export class ClientBase {
 
 
         this.client = axios.create({
-            baseURL: process.env.API_BASE_URL,
+            baseURL: process.env.REACT_APP_API_BASE_URL,
             headers: {
+                "Access-Control-Allow-Origin": '*',
                 "Content-Type": 'application/json'
             }
         })

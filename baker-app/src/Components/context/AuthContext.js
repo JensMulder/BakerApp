@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
 import authClient from "../../clients/authClient";
 
 const AuthContext = createContext({});
@@ -20,15 +19,15 @@ function AuthContextProvider({ children }) {
             try {
                 const response = await authClient.getUserInfo();
 
+                const data = response.data.result;
+
                 setAuthState({
                     ...authState,
                     user: {
-                        id: response.data.id,
-                        username: response.data.username,
-                        email: response.data.email,
-                        roles: response.data.roles,
-
-
+                        id: data.id,
+                        username: data.username,
+                        email: data.email,
+                        roles: data.roles,
                     },
                     status: 'done',
                 });
@@ -57,6 +56,7 @@ function AuthContextProvider({ children }) {
 
     function login(data) {
         localStorage.setItem('token', data.accessToken);
+
         setAuthState({
             ...authState,
             user: {

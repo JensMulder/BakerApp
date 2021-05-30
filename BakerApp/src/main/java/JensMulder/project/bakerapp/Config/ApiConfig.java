@@ -1,5 +1,7 @@
 package JensMulder.project.bakerapp.Config;
 
+import JensMulder.project.bakerapp.core.models.User;
+import JensMulder.project.bakerapp.dto.user.RegisterRequest;
 import JensMulder.project.bakerapp.util.factories.ApiResponseFactory;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -14,6 +16,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.print.attribute.standard.Destination;
 import java.lang.reflect.Field;
 
 import static java.util.Optional.ofNullable;

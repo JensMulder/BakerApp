@@ -12,7 +12,7 @@ import java.util.Date;
 public class Order extends DbModelBase {
     @NotBlank
     private Date deliverDate;
-    @NotBlank
+
     private Date orderDate;
 
     @Enumerated(EnumType.STRING)

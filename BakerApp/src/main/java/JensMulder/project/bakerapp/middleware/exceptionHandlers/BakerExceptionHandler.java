@@ -1,8 +1,6 @@
 package JensMulder.project.bakerapp.middleware.exceptionHandlers;
 
-import JensMulder.project.bakerapp.util.ApiError;
-import JensMulder.project.bakerapp.util.ApiException;
-import JensMulder.project.bakerapp.util.ApiResponse;
+import JensMulder.project.bakerapp.util.exceptions.ApiException;
 import JensMulder.project.bakerapp.util.factories.ApiResponseFactory;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpHeaders;

@@ -7,7 +7,7 @@ import JensMulder.project.bakerapp.core.enums.BakerRoles;
 import JensMulder.project.bakerapp.core.models.Role;
 import JensMulder.project.bakerapp.core.models.User;
 import JensMulder.project.bakerapp.dto.user.LoginRequest;
-import JensMulder.project.bakerapp.util.ApiException;
+import JensMulder.project.bakerapp.util.exceptions.ApiException;
 import JensMulder.project.bakerapp.util.CrudResult;
 import JensMulder.project.bakerapp.util.ValidationError;
 import JensMulder.project.bakerapp.util.auth.AuthenticationFacade;
@@ -16,13 +16,14 @@ import JensMulder.project.bakerapp.util.auth.LoginResult;
 import JensMulder.project.bakerapp.util.auth.UserPrincipal;
 import org.slf4j.Logger;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.stream.Collectors;
@@ -52,16 +53,16 @@ public class AuthService {
         this.roleRepo = roleRepo;
     }
 
-    public CrudResult<User> register(@Valid User user) {
+    public CrudResult<User> register(User user) {
         logger.info(user.toString());
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        if(user.getRoles() == null) {
+        if(user.getRoles() != null) {
             var roles = new HashSet<Role>();
 
             roles.add(roleRepo.findByName(BakerRoles.USER)
-                    .orElseThrow(() -> new RuntimeException(String.format(ErrorConstants.NOT_FOUND_ERROR_MSG, "role", "name", BakerRoles.USER))));
+                    .orElseThrow(() -> new RuntimeException(String.format(ErrorConstants.NOT_FOUND_ERROR_MSG, "rol", "naam", BakerRoles.USER))));
 
             user.setRoles(roles);
         }
@@ -69,13 +70,31 @@ public class AuthService {
         return save(user);
     }
 
+    public User getByUsername(String username) {
+        return userRepo.findByUsername(username).orElseThrow(() -> new RuntimeException(String.format(ErrorConstants.NOT_FOUND_ERROR_MSG, "rol", "naam", BakerRoles.USER)));
+    }
+
     public LoginResult login(LoginRequest loginRequest) {
-        var authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
-                        loginRequest.getPassword()));
+        Authentication authentication;
+
+        try {
+            authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
+                            loginRequest.getPassword()));
+        }
+        catch(Exception exc) {
+            throw new ApiException(HttpStatus.FORBIDDEN, ErrorConstants.BAD_CREDENTIALS_MSG);
+        }
 
         AuthenticationFacade.setAuthentication(authentication);
-        var jwt = jwtUtils.generateJwtToken(authentication);
+
+        var jwt = "";
+
+        try {
+            jwt = jwtUtils.generateJwtToken(authentication);
+        } catch(Exception exc) {
+            throw new ApiException(HttpStatus.INTERNAL_SERVER_ERROR, "Je moet een stoerdere key gebruiken (min. 512 bit, zie https://passwordsgenerator.net/sha512-hash-generator/)");
+        }
 
         var principal = (UserPrincipal) authentication.getPrincipal();
         var roles = principal.getAuthorities().stream()
@@ -89,11 +108,11 @@ public class AuthService {
         try {
             return new CrudResult<>(null, userRepo.save(item));
         } catch(DataIntegrityViolationException exc) {
-            logger.info("De boef: " + exc.getClass().getCanonicalName());
+            logger.info("ICU: " + exc.getClass().getCanonicalName());
 
             var errorList = new ArrayList<ValidationError>();
 
-            errorList.add(new ValidationError("username", String.format(ErrorConstants.DUPLICATE_KEY_MSG, "username", item.getUsername())));
+            errorList.add(new ValidationError("username", String.format(ErrorConstants.DUPLICATE_KEY_MSG, "gebruikersnaam", item.getUsername())));
 
             throw new ApiException(errorList);
         }

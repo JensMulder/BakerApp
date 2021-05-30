@@ -1,4 +1,4 @@
-import React, { Component, useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Logo from "../../images/unnamed.png";
 import { AuthContext, useAuthState } from "../context/AuthContext";

@@ -1,6 +1,5 @@
-import React, {useContext, useEffect, useState} from "react";
+import React from "react";
 import { useHistory} from "react-router-dom";
-import axios from "axios";
 
 import {createOrderData, createPieData, createTestUsers} from "../constants/testData";
 import  profilePicture  from '../images/profile picture.png'

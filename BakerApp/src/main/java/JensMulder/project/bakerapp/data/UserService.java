@@ -3,7 +3,7 @@ package JensMulder.project.bakerapp.data;
 import JensMulder.project.bakerapp.core.constants.ErrorConstants;
 import JensMulder.project.bakerapp.core.contracts.IUserRepository;
 import JensMulder.project.bakerapp.core.models.User;
-import JensMulder.project.bakerapp.util.ApiException;
+import JensMulder.project.bakerapp.util.exceptions.ApiException;
 import JensMulder.project.bakerapp.util.CrudResult;
 import JensMulder.project.bakerapp.data.base.ServiceBase;
 import org.slf4j.Logger;

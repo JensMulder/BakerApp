@@ -3,6 +3,7 @@ package JensMulder.project.bakerapp.util.factories;
 import JensMulder.project.bakerapp.core.constants.ErrorConstants;
 import JensMulder.project.bakerapp.core.contracts.IDbModel;
 import JensMulder.project.bakerapp.util.*;
+import JensMulder.project.bakerapp.util.exceptions.ApiException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.http.HttpStatus;

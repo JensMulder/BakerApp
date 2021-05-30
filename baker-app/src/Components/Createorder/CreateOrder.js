@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
-import { size  as pieSize } from '../../constants/Constants';
+import React from "react";
 import "../../Styles/Component_styles/CreateOrder.css";
 import {OrderForm} from "../../forms/OrderForm";
 

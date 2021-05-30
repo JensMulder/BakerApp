@@ -1,6 +1,7 @@
-package JensMulder.project.bakerapp.util;
+package JensMulder.project.bakerapp.util.exceptions;
 
 import JensMulder.project.bakerapp.core.constants.ErrorConstants;
+import JensMulder.project.bakerapp.util.ValidationError;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 

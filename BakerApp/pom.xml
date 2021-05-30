@@ -10,9 +10,9 @@
 	</parent>
 
 	<groupId>JensMulder.project</groupId>
-	<artifactId>ApplicationShop</artifactId>
+	<artifactId>BakerApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ApplicationShop</name>
+	<name>BakerApp</name>
 	<description>Project for Novi</description>
 
 	<properties>

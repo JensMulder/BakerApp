@@ -12,12 +12,12 @@ public final class ErrorConstants {
     public static final String UNAUTHENTICATED_ERROR = "UnauthenticatedError";
 
     // Error messages
-    public static final String NOT_FOUND_ERROR_MSG = "%s with %s '%s' could not be found.";
-    public static final String INTERNAL_SERVER_ERROR_MSG = "Something went wrong.";
-    public static final String VALIDATION_ERROR_MSG = "Request failed with validation errors.";
-    public static final String ACCESS_DENIED_MSG = "You don't have the right permissions to access this resource.";
+    public static final String NOT_FOUND_ERROR_MSG = "%s met %s '%s' kon niet worden gevonden.";
+    public static final String INTERNAL_SERVER_ERROR_MSG = "Er ging iets mis.";
+    public static final String VALIDATION_ERROR_MSG = "Request is gefaald met validatie errors.";
+    public static final String ACCESS_DENIED_MSG = "Je hebt niet de juiste permissies om deze gegevens te mogen inzien.";
     public static final String ERROR_HANDLER_MSG = "Exception %s was raised with request %s at %s";
-    public static final String UNAUTHENTICATED_ERROR_MSG = ACCESS_DENIED_MSG + " Please log in.";
-    public static final String DUPLICATE_KEY_MSG = "%s '%s' already exists";
-
+    public static final String UNAUTHENTICATED_ERROR_MSG = ACCESS_DENIED_MSG + " Log alsjeblieft eerst in.";
+    public static final String DUPLICATE_KEY_MSG = "%s met waarde '%s' bestaat al";
+    public static final String BAD_CREDENTIALS_MSG = "Gebruikersnaam en/of wachtwoord zijn incorrect.";
 }
