@@ -61,30 +61,30 @@ Housenumber: 1
 Housenumberadd: a
 provincie: Zuid-Holland
 
-- paste in resources:
+# paste in resources:
 
-spring.datasource.url= jdbc:postgresql://localhost:5432/postgres
-spring.datasource.username= <postgresql username>
-spring.datasource.password= <postgresql password>
+spring.datasource.url= jdbc:postgresql://localhost:5432/postgres <br>
+spring.datasource.username= <postgresql username> <br>
+spring.datasource.password= <postgresql password> <br>
 
-# this is the default api route
-server.servlet.context-path= /api
+server.servlet.context-path= /api <br>
 
-spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation= true
-spring.jpa.properties.hibernate.dialect= org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation= true <br>
+spring.jpa.properties.hibernate.dialect= org.hibernate.dialect.PostgreSQLDialect <br>
 
-# Hibernate ddl auto (create, create-drop, validate, update)
-spring.jpa.hibernate.ddl-auto= create
 
-client.url= http://localhost:3000
+spring.jpa.hibernate.ddl-auto= create <br>
 
-# for a valid jwt secret you can visit https://passwordsgenerator.net/sha512-hash-generator/
-jwt.secret= <a SHA512 string>
-jwt.expiration.ms= 36000
+client.url= http://localhost:3000 <br>
+
+jwt.secret= <a SHA512 string> <br>
+jwt.expiration.ms= 36000 <br>
 
   --------------------------------------------------------------------------------------
+  # for a valid jwt secret you can visit https://passwordsgenerator.net/sha512-hash-generator/
+ 
   
- it should look like this: 
+  it should look like this: 
   
   ![image](https://user-images.githubusercontent.com/75301702/120120779-e45a0e00-c19f-11eb-90db-31739e4f18fe.png)
 
