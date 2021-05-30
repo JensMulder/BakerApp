@@ -1,0 +1,49 @@
+
+
+
+
+.app {
+  text-align: center;
+
+
+}
+
+.input {
+}
+
+.container {
+  text-align: center;
+  width: 100%;
+  justify-content: space-around;
+  padding: 250px 40px;
+  background-image: url("../../images/birthday-cake-presents.jpg") ;
+  background-size: cover;
+  border-radius: 15px;
+
+}
+
+.container h1{
+  margin-top: 20px;
+  font-size: 50px;
+  text-transform: uppercase;
+
+}
+.container p{
+  margin-top: 20px;
+  font-size: 19px;
+}
+.container button{
+  margin-top: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+

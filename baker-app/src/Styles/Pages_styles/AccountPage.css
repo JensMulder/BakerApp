@@ -1,0 +1,66 @@
+.Account {
+    background: url(https://images.pexels.com/photos/1889651/pexels-photo-1889651.jpeg?cs=srgb&dl=pexels-dalila-dalprat-1889651.jpg&fm=jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    min-height: 100%;
+}
+
+.container {
+    width: 25%;
+    background-color: whitesmoke;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+
+
+}
+.account-main {
+    padding: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.account-tob-bar {
+    background-color: #2A88AD;
+    overflow: hidden;
+}
+ .container img {
+     height: 250px;
+     display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+
+}
+.sidebar {
+    background-color: rgb(0,75,147) ;
+    color: white;
+    height: 100%;
+}
+.sidebar p {
+    margin-left: 10px;
+    display: block;
+    color: white;
+    padding-bottom: 10px;
+    font-size: 20px;
+    text-decoration: none;
+}
+.card {
+    position: relative;
+    display: grid;
+    flex-direction: column;
+}
+.content {
+    background-color: white;
+
+
+}
+.card p, h5 {
+    text-align: center;
+
+
+
+}
+
