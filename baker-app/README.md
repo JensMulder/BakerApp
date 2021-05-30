@@ -8,7 +8,7 @@ This application enables customers, to order specified birthdaycakes. During cor
 - Install react, react router-DOM
 - Install Axios
 - Create .env in projectroot with "REACT_APP_API_BASE_URL=http://localhost:8080/api"
-- Create a new folder called "recourses" in /src/main. Add the following properties  to it (LOOK AT BOTTOM OF FILE (paste resources))
+- Create a new folder called "recourses" in /src/main. Add the following properties  to it (LOOK AT BOTTOM OF FILE (paste resources)) in the backend
 ### `npm run start` (starting the application)
 
 Runs the app in the development mode.\
