@@ -7,7 +7,8 @@ This application enables customers, to order specified birthdaycakes. During cor
 - Install Node.js and NPM, with this you can fire-up the application. (https://www.npmjs.com/get-npm)
 - Install react, react router-DOM
 - Install Axios
-- 
+- Create .env in projectroot with "REACT_APP_API_BASE_URL=http://localhost:8080/api"
+- Create a new folder called "recourses" in /src/main. Add the following properties  to it (LOOK AT BOTTOM OF FILE (paste resources)) in the backend
 ### `npm run start` (starting the application)
 
 Runs the app in the development mode.\
@@ -15,6 +16,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+
 
 1. First create an Account at the register page.
 ![image](https://user-images.githubusercontent.com/75301702/119733115-5b7a6400-be79-11eb-9104-528727b39f9f.png)
@@ -58,6 +60,34 @@ Postcode: 3743QR
 Housenumber: 1
 Housenumberadd: a
 provincie: Zuid-Holland
+
+# paste in resources:
+
+spring.datasource.url= jdbc:postgresql://localhost:5432/postgres <br>
+spring.datasource.username= <postgresql username> <br>
+spring.datasource.password= <postgresql password> <br>
+
+server.servlet.context-path= /api <br>
+
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation= true <br>
+spring.jpa.properties.hibernate.dialect= org.hibernate.dialect.PostgreSQLDialect <br>
+
+
+spring.jpa.hibernate.ddl-auto= create <br>
+
+client.url= http://localhost:3000 <br>
+
+jwt.secret= <a SHA512 string> <br>
+jwt.expiration.ms= 36000 <br>
+
+  --------------------------------------------------------------------------------------
+  # for a valid jwt secret you can visit https://passwordsgenerator.net/sha512-hash-generator/
+ 
+  
+  it should look like this: 
+  
+  ![image](https://user-images.githubusercontent.com/75301702/120120779-e45a0e00-c19f-11eb-90db-31739e4f18fe.png)
+
 
 
 ### Code Splitting
